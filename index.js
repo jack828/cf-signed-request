@@ -40,6 +40,7 @@ program
   .option('--login <login-url>', 'Login and get API key & ID')
   .option('--compressed', 'Unsupported cURL command')
   .option('-o, --output <file>', 'Output to a file instead of stdout')
+  .option('-d, --data <data>', 'POST data')
   .parse(process.argv)
 
 if (program.login) {
@@ -95,15 +96,13 @@ if (program.login) {
       url: parsedURL.pathname
     , method: program.method || method
     , headers: formattedHeaders
+    , body: program.data || ''
   }
 
   request(signRequest(hostname, req, auth), function (err, res, body) {
     if (err) throw err
     if (res.statusCode !== 200) throw new Error('Api error: ' + body)
 
-    // body = JSON.parse(body)
-    // console.log(Object.keys(body))
-    // console.log(body.totalItems)
     console.log(body)
   })
 
