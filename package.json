@@ -1,7 +1,7 @@
 {
   "name": "cf-signed-request",
   "description": "CLI for signed requests to cf-api",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dependencies": {
     "commander": "^2.9.0",
     "prompt": "^1.0.0",
