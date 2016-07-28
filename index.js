@@ -6,6 +6,7 @@ const signRequest = require('./lib/sign-request')
     , request = require('request')
     , URL = require('url')
     , prompt = require('prompt')
+    , fs = require('fs')
     , headers = [ ]
     , schema = {
       properties: {
@@ -99,10 +100,14 @@ if (program.login) {
     if (err) throw err
     if (res.statusCode !== 200) throw new Error('Api error: ' + body)
 
-    // body = JSON.parse(body)
-    // console.log(Object.keys(body))
-    // console.log(body.totalItems)
-    console.log(body)
+    if (program.output) {
+      fs.writeFile(program.output, body, 'utf8', function (err) {
+        if (err) throw err
+        console.log('Response written to "%s"', program.output)
+      })
+    } else {
+      console.log(body)
+    }
   })
 
 }
