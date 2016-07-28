@@ -29,15 +29,15 @@ function collect (val, list) {
 prompt.message = ''
 
 program
-  .version('0.1.0')
   .usage('--api-key=KEY --api-id=ID --url=URL [options]')
   .option('--api-key <key>', 'API key')
   .option('--api-id <id>', 'API ID')
   .option('--url <url>', 'URL')
-  .option('--method [method]', 'Request method')
-  .option('-H, --header [header]', 'HTTP header', collect, headers)
-  .option('--login [login-url]', 'Login and get API key & ID')
+  .option('--method <method>', 'Request method')
+  .option('-H, --header <header>', 'HTTP header', collect, headers)
+  .option('--login <login-url>', 'Login and get API key & ID')
   .option('--compressed', 'Unsupported cURL command')
+  .option('-o, --output <file>', 'Output to a file instead of stdout')
   .parse(process.argv)
 
 if (program.login) {
