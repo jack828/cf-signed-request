@@ -6,6 +6,7 @@ const signRequest = require('./lib/sign-request')
     , request = require('request')
     , URL = require('url')
     , prompt = require('prompt')
+    , headers = [ ]
     , schema = {
       properties: {
         email: {
@@ -20,6 +21,11 @@ const signRequest = require('./lib/sign-request')
       }
     }
 
+function collect (val, list) {
+  list.push(val)
+  return list
+}
+
 prompt.message = ''
 
 program
@@ -29,7 +35,9 @@ program
   .option('--api-id <id>', 'API ID')
   .option('--url <url>', 'URL')
   .option('--method [method]', 'Request method')
+  .option('-H, --header [header]', 'HTTP header', collect, headers)
   .option('--login [login-url]', 'Login and get API key & ID')
+  .option('--compressed', 'Unsupported cURL command')
   .parse(process.argv)
 
 if (program.login) {
@@ -68,21 +76,33 @@ if (program.login) {
   , auth = { id: program.apiId, key: program.apiKey }
   , req
   , method
+  , formattedHeaders = { }
   if (!program.url) throw Error('URL required')
   if (!program.apiKey) throw Error('API key required')
   if (!program.apiId) throw Error('API ID required')
   if (['PUT', 'POST', 'DELETE'].indexOf(program.method) === -1) method = 'GET'
 
-  req = { url: parsedURL.pathname, method: program.method || method }
+  // console.log(program)
+  headers.forEach((header) => {
+    let headerSplit = header.split(':')
+      , key = headerSplit[0]
+      , value = headerSplit.slice(1).join(':')
+    formattedHeaders[key] = value
+  })
+  req = {
+      url: parsedURL.pathname
+    , method: program.method || method
+    , headers: formattedHeaders
+  }
 
   request(signRequest(hostname, req, auth), function (err, res, body) {
     if (err) throw err
     if (res.statusCode !== 200) throw new Error('Api error: ' + body)
 
-    body = JSON.parse(body)
-    console.log(Object.keys(body))
-    console.log(body.totalItems)
-
+    // body = JSON.parse(body)
+    // console.log(Object.keys(body))
+    // console.log(body.totalItems)
+    console.log(body)
   })
 
 }

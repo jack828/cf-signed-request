@@ -26,6 +26,8 @@ npm install -g cf-signed-request
     --url <url>          URL
     --method [method]    Request method
     --login [login-url]  Login and get API key & ID
+    -H, --header         HTTP header
+    --compressed         Unsupported cURL command
 ```
 
 
@@ -35,15 +37,16 @@ cf-req --login=[login-url]
 ```
 The login url must be where the authentication happens, eg:
 ```
-cf-req --login=http://localhost.clockhosting.com:3832/auth
+cf-req --login=http://localhost:3832/auth
 ```
 This will ask for the users email and password, and returns the API key and ID.
 
 ###To perform requests:
 ```
-cf-req --api-key=[api-key] --api-id=[api-id] --url=[api-url] [--method=[method]]
+cf-req --api-key=[api-key] --api-id=[api-id] --url=[api-url] [--method=[method] --H='header:info']
 ```
 Will perform a request of the specified type (defaults to POST) to the specified URL and displays the body of the response.
+Custom headers can be passed and will override any existing ones.
 Currently does **not** support query string parameters.
 
 ## Credits
