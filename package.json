@@ -9,7 +9,7 @@
   },
   "main": "index.js",
   "bin": {
-    "api-req": "index.js"
+    "cf-req": "index.js"
   },
   "scripts": {
     "lint": "eslint -f unix .",
