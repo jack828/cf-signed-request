@@ -78,7 +78,7 @@ if (program.login) {
   , auth = { id: program.apiId, key: program.apiKey }
   , req
   , method
-  , formattedHeaders = { }
+  , formattedHeaders = { 'User-Agent': `${pkg.name}/${pkg.version}` }
   if (!program.url) throw Error('URL required')
   if (!program.apiKey) throw Error('API key required')
   if (!program.apiId) throw Error('API ID required')
