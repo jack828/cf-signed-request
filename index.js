@@ -2,6 +2,7 @@
 'use strict'
 
 const signRequest = require('./lib/sign-request')
+    , pkg = require('./package.json')
     , program = require('commander')
     , request = require('request')
     , URL = require('url')
@@ -30,6 +31,7 @@ prompt.message = ''
 
 program
   .usage('--api-key=KEY --api-id=ID --url=URL [options]')
+  .version(pkg.version)
   .option('--api-key <key>', 'API key')
   .option('--api-id <id>', 'API ID')
   .option('--url <url>', 'URL')
