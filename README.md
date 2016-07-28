@@ -24,11 +24,12 @@ npm install -g cf-signed-request
     --api-key <key>      API key
     --api-id <id>        API ID
     --url <url>          URL
-    --method [method]    Request method
-    --login [login-url]  Login and get API key & ID
+    --method <method>    Request method
+    --login <login-url>  Login and get API key & ID
     -H, --header         HTTP header
     --compressed         Unsupported cURL command
     -o, --output <file>  Output to a file instead of stdout
+    -d, --data <data>    POST data
 ```
 
 
@@ -44,11 +45,22 @@ This will ask for the users email and password, and returns the API key and ID.
 
 ###To perform requests:
 ```
-cf-req --api-key=[api-key] --api-id=[api-id] --url=[api-url] [--method=[method] --H='header:info']
+cf-req --api-key=[api-key] --api-id=[api-id] --url=[api-url] [options]
 ```
 Will perform a request of the specified type (defaults to GET) to the specified URL and displays the body of the response.
 Custom headers can be passed and will override any existing ones.
-Currently does **not** support query string parameters.
+
+##Arguments
+
+| Argument | Usage | Example|
+|----------|-------|--------|
+|```-h, --help```| Display help |```cf-req -h```|
+|```-V, --version```| Display version |```cf-req -V```|
+|```--api-key <key>```| The API key |See ```--url```|
+|```--api-id <id>```| The API ID |See ```--url```|
+|```--url <url>```| The API url<br>Must include protocol |```cf-req --api-key XYZ --api-id ABC --url http://localhost:3832/api```|
+|```--login <url>```| The URL where user credentials are authenticated and API key/ID is returned.<br>Credentials are given in a friendly copy-paste format.| ```cf-req --login http://localhost:3831/auth``` |
+| ```-H, --header '<header>'``` | Supply additional headers.<br>Multiple headers may eb given, and will override application defaults. | ```cf-req --api-key XYZ --api-id ABC --url http://localhost:3832/api -H 'cf-keep-data:true'``` |
 
 ## Credits
 [Jack Burgess](https://github.com/jack828/)
