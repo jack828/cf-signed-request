@@ -23,7 +23,7 @@ const signRequest = require('./lib/sign-request')
 prompt.message = ''
 
 program
-  .version('0.0.1')
+  .version('0.1.0')
   .usage('--api-key=KEY --api-id=ID --url=URL [options]')
   .option('--api-key <key>', 'API key')
   .option('--api-id <id>', 'API ID')
