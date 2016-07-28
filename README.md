@@ -46,7 +46,7 @@ This will ask for the users email and password, and returns the API key and ID.
 ```
 cf-req --api-key=[api-key] --api-id=[api-id] --url=[api-url] [--method=[method] --H='header:info']
 ```
-Will perform a request of the specified type (defaults to POST) to the specified URL and displays the body of the response.
+Will perform a request of the specified type (defaults to GET) to the specified URL and displays the body of the response.
 Custom headers can be passed and will override any existing ones.
 Currently does **not** support query string parameters.
 
