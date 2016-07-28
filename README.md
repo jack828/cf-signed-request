@@ -28,6 +28,7 @@ npm install -g cf-signed-request
     --login [login-url]  Login and get API key & ID
     -H, --header         HTTP header
     --compressed         Unsupported cURL command
+    -o, --output <file>  Output to a file instead of stdout
 ```
 
 
