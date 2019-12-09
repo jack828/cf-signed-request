@@ -41,6 +41,7 @@ program
   .option('--compressed', 'Unsupported cURL command')
   .option('-o, --output <file>', 'Output to a file instead of stdout')
   .option('-d, --data <data>', 'POST data')
+  .option('--hash <type>', 'Hash function to use. Defaults to SHA-1')
   .parse(process.argv)
 
 if (program.login) {
@@ -99,7 +100,7 @@ if (program.login) {
     , body: program.data || ''
   }
 
-  request(signRequest(hostname, req, auth), function (err, res, body) {
+  request(signRequest(hostname, req, auth, program.hash), function (err, res, body) {
     if (err) throw err
     if (res.statusCode !== 200) throw new Error('Api error: ' + body)
 

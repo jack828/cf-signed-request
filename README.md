@@ -30,6 +30,7 @@ npm install -g cf-signed-request
     --compressed         Unsupported cURL command
     -o, --output <file>  Output to a file instead of stdout
     -d, --data <data>    POST data
+    --hash <type>        Hash function to use. Defaults to SHA-1
 ```
 
 
@@ -61,6 +62,7 @@ Custom headers can be passed and will override any existing ones.
 |```--url <url>```| The API url<br>Must include protocol |```cf-req --api-key XYZ --api-id ABC --url http://localhost:3832/api```|
 |```--login <url>```| The URL where user credentials are authenticated and API key/ID is returned.<br>Credentials are given in a friendly copy-paste format.| ```cf-req --login http://localhost:3831/auth``` |
 | ```-H, --header '<header>'``` | Supply additional headers.<br>Multiple headers may eb given, and will override application defaults. | ```cf-req --api-key XYZ --api-id ABC --url http://localhost:3832/api -H 'cf-keep-data:true'``` |
+|--hash <type>``` | The hash function to use, defaults to sha1. | ```cf-req --login=http://localhost:3832/auth --hash sha256``` |
 
 ## Credits
 [Jack Burgess](https://github.com/jack828/)
